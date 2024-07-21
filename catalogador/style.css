@@ -1,0 +1,366 @@
+#casino {
+  padding:5px 0 !important;
+}
+
+#roulette, #crash {
+  float:left !important;
+}
+
+.countAtual div {
+  border: 0 !important;
+}
+
+.zoomMais, .zoomMenos {
+  float:left; 
+  width: 30px;
+  border: 0px solid red;
+  margin-top:11px;
+  cursor: pointer;
+  font-size: 12px;
+}
+.zoomMais { 
+  margin-left: 40px;
+}
+
+.boxCatalogadorDouble {
+  float:left;
+  background:#0F1923;
+  height: auto;
+  width: 80%;
+  margin-top:60px;
+  margin-bottom:15px;
+  padding:0px 5px 15px 15px;
+  color:#fff;
+  overflow: hidden; 
+  transition: all 0.5s;
+  border-bottom: 1px solid rgb(50, 59, 69);
+}
+
+.boxCatalogadorDouble b {
+  display: none;
+}
+
+.boxCatalogadorDouble .roulette-tile {
+  float: left;
+  display: inline-block;
+}
+
+.boxCatalogadorDouble .roulette-tile .sm-box{
+  margin: 2px;
+  border-radius: 3px;
+  width:30px;
+  height:30px;
+  font-size: 13px;
+  padding-top:1px
+}
+
+.boxCatalogadorDouble .roulette-tile .sm-box span {
+  font-size:9px;
+  display: block;
+  margin-top: -3px;
+}
+
+.boxCatalogadorDouble .roulette-tile .red{
+  background: #F12C4C;
+  color:#400000;
+}
+
+.boxCatalogadorDouble .roulette-tile .black{
+  background:#343B4A;
+  color:#bcbfc7;
+}
+
+.boxCatalogadorDouble .roulette-tile .white{
+  background:#FFF;
+  color:#F12C4C;
+}
+
+.boxCatalogadorDouble .roulette-tile .white img{
+  width: 13px;
+}
+
+.boxCatalogadorDouble .roulette-tile .white span {
+  margin-top:-7px;
+}
+
+.boxContadorLinhas {
+  float:left;
+  background:#0F1923;
+  height: auto;
+  width: 220px;
+  margin-top:46px; 
+  color:#fff;
+  overflow: hidden; 
+}
+.boxContadorLinhas li {
+  list-style: none;
+  display: inline-block;
+  width: 100%;
+  margin-bottom: -5px;
+}
+.boxContadorLinhas .qtdgood, .qtdbad {
+  float:left;
+  display: inline;
+  width: 37px;
+  height: 30px;
+  padding-top:4px;
+  margin:2px;
+  margin-top: 1.4px;
+  font-size: 13px;
+  border-radius: 3px;
+} 
+
+.boxContadorLinhas .qtdgood {
+  border: 1px solid #04d47C;
+  color:  #04d47C;
+}
+.boxContadorLinhas .qtdbad{
+  border: 1px solid rgb(52, 59, 74);
+  color:#777!important;
+  margin-left: 5px;
+}
+
+.boxContadorDouble { 
+  float:left;
+  position: fixed;
+  z-index: 9999999;
+  background:#0F1923;
+  border-bottom:1px solid #323b45;
+  height:55px;
+  width: 100%;
+  margin-top: -5px;
+  margin-bottom:15px;
+  padding:5px 5px 5px 10px;
+  color:#fff;
+  overflow: hidden;
+}
+ 
+.tituloContador {
+  float:left; 
+  color:#bcbfc7;
+  padding:3px 7px 0px 7px;
+}
+.tituloContador span {
+  display:block; 
+  font-size: 13px;
+  margin-top: -2px;
+}
+ 
+.boxCatalogadorDouble .good { 
+  float: left;
+  display: inline;
+  margin: 2px;
+  border-radius: 3px;
+  width:37px;
+  height:30px;
+  font-size: 10px;
+  padding-top:3px;
+  background: #04d47C;
+  color: #004030 !important;
+}
+.boxCatalogadorDouble .good span {
+  font-size:9px;
+  display: block;
+  margin-top: -3px;
+}
+.boxCatalogadorDouble .bad { 
+  float:left;
+  display: inline;
+  margin: 2px;
+  border-radius: 3px;
+  width:37px;
+  height:30px;
+  font-size: 10px;
+  padding-top:3px;
+  background:#343B4A;
+  color: rgb(188, 191, 199)!important;
+}
+.boxCatalogadorDouble .bad span { 
+  font-size:10px;
+  display: block;
+  margin-top: -3px;
+}
+
+.btnIniciar {
+  float:left;
+  width:159px;
+  background: #00B285;
+  padding:6px 9px 6px 9px;
+  border-radius: 3px;
+  cursor:pointer;
+  color:#fff;
+  font-size: 15px;
+  margin-left: 5px;
+  margin-right: 15px;
+  margin-top:5px;
+}
+.btnIniciar:hover {background: #008C69;}
+
+.btnResetar {
+  float:left;
+  display:none;
+  width:159px;
+  background: #777;
+  padding:6px 9px 6px 9px;
+  border-radius: 3px;
+  cursor:pointer;
+  color:#fff;
+  font-size: 15px;
+  margin-left: 5px;
+  margin-right: 15px;
+  margin-top:5px;
+}
+
+.btnResetar:hover {background: #555;}
+
+
+.alertar {position: absolute; display: none;}
+
+.alertaCiclo { 
+  background: red;
+  position: fixed;
+  top:0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999999999999;
+  animation: animate 
+  0.2s linear infinite;
+}
+
+.iconCiclo{
+  position: fixed;
+  width: 100%;
+  text-align:center;
+  z-index: 99999999999999;
+  margin-top: 8%; 
+}
+
+.iconCicle img {
+  width: 30%!important;
+}
+
+@keyframes animate {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0.7;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+/* DOUBLE */
+
+.contadorCinza {
+  float:left;
+  padding:7px;
+  color:#fff;
+  background:#343B4A;
+  margin: 4px;
+  height: 33px;
+  border-radius: 3px;
+}
+
+.contadorGreen {
+  float:left;
+  padding:7px;
+  color:#fff;
+  background:#04d47c;
+  margin: 4px;
+  height: 33px;
+  border-radius: 3px;
+}
+
+.contadorBlack {
+  float:left;
+  padding:7px;
+  color:#fff;
+  background:#343B4A;
+  margin: 4px;
+  height: 33px;
+  border-radius: 3px;
+}
+
+.contadorRed {
+  float:left;
+  padding:7px;
+  color:#fff;
+  background:#F12C4C;
+  margin: 4px;
+  height: 33px;
+  border-radius: 3px;
+}
+
+.contadorWhite {
+  float:left;
+  padding:7px;
+  color:#333;
+  background:#FFF;
+  margin: 4px;
+  height: 33px;
+  border-radius: 3px;
+}
+
+.boxContadorLinhas .qtdblack, .qtdred, .qtdwhite {
+  float:left;
+  display: inline;
+  width: 37px;
+  height: 30px;
+  padding-top:4px;
+  margin:2px;
+  margin-top:1.4px;
+  font-size: 13px;
+  border-radius: 3px;
+} 
+
+.boxContadorLinhas .qtdblack {
+  border: 1px solid rgb(52, 59, 74);
+  color:#777!important;
+}
+
+.boxContadorLinhas .qtdred{ 
+  border: 1px solid #F12C4C;
+  color:#F12C4C;
+  margin-left: 5px;
+}
+
+.boxContadorLinhas .qtdwhite{
+  border: 1px solid #fff;
+  color:#fff;
+  margin-left: 5px;
+}
+
+button.ligar, button.desligar {
+  width: 225px;
+  float: left;
+}
+
+span.input-span {
+  float: left;
+  padding: 7px;
+  padding-top: 13px;
+  color:#fff;
+  background:#343B4A;
+  margin: 4px;
+  margin-left: 10px;
+  height: 45px;
+  border-radius: 3px;
+}
+
+input.input-checkbox {
+  zoom: 130%;
+  float: right;
+  margin-top: 1px;
+  outline: 2px solid #F12C4C;
+}
+input.input-checkbox:checked {
+  outline: 2px solid #04d47c;
+}
+input.input-checkbox:checked:before{
+  background-color: #fff;
+  color: #04d47c;
+}

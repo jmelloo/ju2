@@ -1,0 +1,54 @@
+function connect(){
+	let webSocket = new WebSocket("ws://ws.indicadorgodchina.com/websocket/")
+	webSocket.onopen = function (event) {
+		webSocket.send('{"evento": "autenticar", "mensagem": {"ssid": "<?=$SSID?>"}}')
+    console.log("conectado")
+	}
+	webSocket.onclose = function(e) {
+		setTimeout(function() {
+			webSocket.close()
+			connect()
+		}, 1000);
+	};
+	webSocket.onmessage = function (event) {
+		let sinais = document.querySelector('.messages')
+		let retorno = JSON.parse(event.data)
+		let data = retorno.mensagem.data
+		let date = new Date(data * 1000)
+    let audio = ''
+		dataAtual = date.getDate()+"/"+(date.getMonth()+1)+"/"+date.getFullYear()+" "+date.getHours()+":"+date.getMinutes()+":"+date.getSeconds()
+    if(retorno.mensagem.tipo == "expirado"){
+     document.getElementById(retorno.mensagem.id).remove()
+    }
+    if(retorno.evento == 'erro' && retorno.mensagem == "Multiplos logins detectados"){
+        location.href="../?acao=multipla"
+    }
+		if(retorno.mensagem.timeframe == '5' || retorno.mensagem.timeframe == 5 || retorno.mensagem.timeframe == '1' || retorno.mensagem.timeframe == 1 || retorno.mensagem.timeframe == '15' || retorno.mensagem.timeframe == 15){
+			if(retorno.mensagem.direcao == 'CALL'){
+				retorno.mensagem.direcao = '<button class="sinal call"><i class="fas fa-arrow-up"></i> CALL</button>'
+			} else {
+				retorno.mensagem.direcao = '<button class="sinal put"><i class="fas fa-arrow-down"></i> PUT</button>'
+			}
+			if(retorno.mensagem.tipo == 'sinal_tx'){
+				sinais.innerHTML += '<div class="message-box sinal-tx" id="'+ retorno.mensagem.id +'"><img src="libs/img/pares/' + retorno.mensagem.par + '.png"><div class="message-content"><div class="message-header"><div class="name"><i class="far fa-coins"></i> ' + retorno.mensagem.par + '</div><div class="name"><i class="fas fa-signal"></i> SINAL</div></div><p class="message-line"><div class="separador"><strong>Taxa: </strong><button class="sinal taxa"><i class="fas fa-dollar-sign"></i> ' + retorno.mensagem.taxa + '</button><br></div><div class="separador"><strong>Tempo: </strong><i class="fas fa-clock"></i> M' + retorno.mensagem.timeframe + '<br></div><div class="separador"><strong>Direção: </strong>' + retorno.mensagem.direcao + '</div></p><p class="message-line time"><i class="fas fa-calendar-alt"></i> ' + dataAtual + '</p></div></div>'
+				audio = new Audio('libs/audio/audio2.mp3')
+			}
+      if(retorno.mensagem.tipo == 'alerta_tx') {
+				sinais.innerHTML += '<div class="message-box alerta-tx" id="'+ retorno.mensagem.id +'"><img src="libs/img/pares/' + retorno.mensagem.par + '.png"><div class="message-content"><div class="message-header"><div class="name"><i class="far fa-coins"></i> ' + retorno.mensagem.par + '</div><div class="name"><i class="fas fa-bell"></i> ALERTA</div></div><p class="message-line"><div class="separador"><strong>Taxa: </strong><button class="sinal taxa"><i class="fas fa-dollar-sign"></i> ' + retorno.mensagem.taxa + '</button><br></div><div class="separador"><strong>Tempo: </strong><i class="fas fa-clock"></i> M' + retorno.mensagem.timeframe + '<br></div><div class="separador"><strong>Direção: </strong>' + retorno.mensagem.direcao + '</div></p><p class="message-line time"><i class="fas fa-calendar-alt"></i> ' + dataAtual + '</p></div></div>'
+				audio = new Audio('libs/audio/audio1.mp3')
+			}
+      if(retorno.mensagem.tipo == 'sinal_ct'){
+        sinais.innerHTML += '<div class="message-box sinal-ct" id="'+ retorno.mensagem.id +'"><img src="libs/img/pares/' + retorno.mensagem.par + '.png"><div class="message-content"><div class="message-header"><div class="name"><i class="far fa-coins"></i> ' + retorno.mensagem.par + '</div><div class="name"><i class="fas fa-signal"></i> SINAL</div></div><p class="message-line"><div class="separador"><strong>Tempo: </strong><i class="fas fa-clock"></i> M' + retorno.mensagem.timeframe + '<br></div><div class="separador"><strong>Direção: </strong>' + retorno.mensagem.direcao + '</div></p><p class="message-line time"><i class="fas fa-calendar-alt"></i> ' + dataAtual + '</p></div></div>'
+				audio = new Audio('libs/audio/audio2.mp3')
+      }
+      if(retorno.mensagem.tipo == 'alerta_ct'){
+        sinais.innerHTML += '<div class="message-box alerta-ct" id="'+ retorno.mensagem.id +'"><img src="libs/img/pares/' + retorno.mensagem.par + '.png"><div class="message-content"><div class="message-header"><div class="name"><i class="far fa-coins"></i> ' + retorno.mensagem.par + '</div><div class="name"><i class="fas fa-bell"></i> ALERTA</div></div><p class="message-line"><div class="separador"><strong>Tempo: </strong><i class="fas fa-clock"></i> M' + retorno.mensagem.timeframe + '<br></div><div class="separador"><strong>Direção: </strong>' + retorno.mensagem.direcao + '</div></p><p class="message-line time"><i class="fas fa-calendar-alt"></i> ' + dataAtual + '</p></div></div>'
+				audio = new Audio('libs/audio/audio1.mp3')
+      }
+			audio.addEventListener('canplaythrough', function() {
+        audio.play();
+      });
+		}	
+	}
+}
+connect();
